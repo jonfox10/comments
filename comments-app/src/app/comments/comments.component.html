@@ -1,0 +1,24 @@
+<div class="comments-container">
+    <div class="notification" *ngIf="alertsService.alerts.length > 0">
+        <div class="alert-message" *ngFor="let alert of alertsService.alerts">
+            <span>{{alert}}</span>
+            <span class="close-alert" (click)="alertsService.remove()">
+                <fa-icon [icon]="faClose"></fa-icon>
+            </span>
+        </div>
+    </div>
+
+    <h4>Comments:</h4>
+    <div class="comments">
+        <div class="comment" *ngFor="let comment of comments">
+            <div class="comment-left-column">
+                <fa-icon [icon]="faComment"></fa-icon><span class="comment-message">{{comment.message}}</span>
+            </div>
+            <div class="comment-right-column">
+                <span class="comment-by-user">{{getAuthor(comment)}} - </span>
+                <span class="comment-timeStamp">{{comment.timestamp | date:'short'}}</span>
+            </div>
+        </div>
+    </div>
+    <app-new-comment></app-new-comment>
+</div>

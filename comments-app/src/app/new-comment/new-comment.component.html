@@ -1,0 +1,24 @@
+<div class="new-comment">
+    <label for="message">Add New comment:</label>
+    <div class="input-container">
+        <input class="message-input" type="text" id="message" [(ngModel)]="comment.message"
+            placeholder="type '@' to tag someone" (keydown)="addTaggInput($event, comment.message)"
+            (keyup.enter)="addComment(comment.message)">
+        <div class="message-tools">
+            <button type="button" (click)="seeUserList()">
+                <fa-icon [icon]="faAt"></fa-icon>
+            </button>
+            <button type="button" (click)="addComment(comment.message)">
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+        </div>
+    </div>
+    <div class="user-list" *ngIf="showUserList">
+        <span class="close-list" (click)="seeUserList()">
+            <fa-icon [icon]="faClose"></fa-icon>
+        </span>
+        <div class="user-select" *ngFor="let user of users" (click)="taggUser(user)">
+            <span>{{user.name}}</span>
+        </div>
+    </div>
+</div>
